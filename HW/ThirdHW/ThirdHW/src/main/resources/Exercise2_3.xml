@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="avich">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `payer` (
+            `idpayer` INT NOT NULL,
+            `name` VARCHAR(45) NOT NULL,
+            PRIMARY KEY (`idpayer`))
+            ENGINE = InnoDB;
+
+            CREATE TABLE IF NOT EXISTS `expenses` (
+            `idexpenses` INT NOT NULL,
+            `date` DATE NOT NULL,
+            `idpayer` INT NOT NULL,
+            `sum` DOUBLE NOT NULL,
+            PRIMARY KEY (`idexpenses`),
+            INDEX `idpayer` (`idpayer` ASC) VISIBLE,
+            CONSTRAINT `idpayer`
+            FOREIGN KEY (`idpayer`)
+            REFERENCES `payer` (`idpayer`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION)
+            ENGINE = InnoDB;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="avich">
+        <sql>
+            INSERT INTO payer VALUES (1, 'Никита');
+            INSERT INTO payer VALUES (2, 'Паша');
+            INSERT INTO payer VALUES (3, 'Саша');
+            INSERT INTO payer VALUES (4, 'Алена');
+            INSERT INTO payer VALUES (5, 'Лена');
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="avich">
+        <sql>
+            INSERT INTO expenses VALUES (1, '2023-10-20', 1, 123.24);
+            INSERT INTO expenses VALUES (2, '2023-10-20', 3, 106.84);
+            INSERT INTO expenses VALUES (3, '2023-10-22', 2, 104.64);
+            INSERT INTO expenses VALUES (4, '2023-10-23', 5, 107.34);
+            INSERT INTO expenses VALUES (5, '2023-10-24', 1, 103.24);
+            INSERT INTO expenses VALUES (6, '2023-10-25', 3, 13.25);
+            INSERT INTO expenses VALUES (7, '2023-10-26', 4, 203.23);
+            INSERT INTO expenses VALUES (8, '2023-10-26', 4, 10.27);
+            INSERT INTO expenses VALUES (9, '2023-10-27', 2, 73.64);
+            INSERT INTO expenses VALUES (10, '2023-10-28', 3, 84.54);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
