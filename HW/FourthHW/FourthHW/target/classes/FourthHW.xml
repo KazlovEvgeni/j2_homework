@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="Evgeni">
+        <sql>
+            CREATE TABLE IF NOT EXISTS user (
+            `id_user` VARCHAR(45) NOT NULL,
+            `name` VARCHAR(45) NOT NULL,
+            `surname` VARCHAR(45) NOT NULL,
+            PRIMARY KEY (`id_user`))
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="Evgeni">
+        <sql>
+            CREATE TABLE IF NOT EXISTS pet (
+            `id_pet` INT NOT NULL AUTO_INCREMENT,
+            `name` VARCHAR(45) NOT NULL,
+            PRIMARY KEY (`id_pet`))
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="Evgeni">
+        <sql>
+            ALTER TABLE user
+            ADD COLUMN `age` INT NULL AFTER `surname`,
+            ADD COLUMN `sex` CHAR(1) NULL AFTER `age`;
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="Evgeni">
+        <sql>
+            ALTER TABLE pet
+            ADD COLUMN `age` INT NULL AFTER `name`;
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="Evgeni">
+        <sql>
+            CREATE TABLE person (
+            `id_person` INT NOT NULL AUTO_INCREMENT,
+            `name` VARCHAR(45) NOT NULL,
+            `surname` VARCHAR(45) NOT NULL,
+            PRIMARY KEY (`id_person`))
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

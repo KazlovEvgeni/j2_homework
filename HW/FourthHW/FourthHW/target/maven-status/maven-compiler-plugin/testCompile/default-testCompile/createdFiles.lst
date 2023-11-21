@@ -1,0 +1,6 @@
+TestTPCInheritance.class
+TestUserDAOImpl.class
+TestSTDAOImpl.class
+TestFourthConnection.class
+TestFourthSessionFactory.class
+TestPetDAOImpl.class
