@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-init-method="init" default-destroy-method="destroy">
+
+    <bean id="person" name="person" class="Exercise2.Person"
+          init-method="init" destroy-method="destroy"
+          factory-method="getInstance">
+        <property name="age" value="11"/>
+        <property name="name" value="Sasha"/>
+        <property name="address" ref="address"/>
+    </bean>
+    <bean id="address" name="address" class="Exercise2.Address">
+        <property name="city" value="Minsk"/>
+        <property name="street" value="Kolosa"/>
+    </bean>
+</beans>
